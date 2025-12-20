@@ -1,0 +1,9 @@
+<h2>My Quiz History</h2>
+
+{% for h in history %}
+  <p>
+    <b>{{ h[0] }}</b> |
+    Score: {{ h[1] }} |
+    {{ h[2] }}
+  </p>
+{% endfor %}
