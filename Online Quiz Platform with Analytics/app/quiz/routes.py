@@ -79,3 +79,23 @@ def start_quiz(quiz_id):
 
     cur.close()
     return render_template('take_quiz.html', quiz_data=quiz_data)
+
+@quiz_bp.route('/history')
+def quiz_history():
+    if 'user_id' not in session:
+        return redirect(url_for('auth.login'))
+
+    user_id = session['user_id']
+
+    cur = mysql.connection.cursor()
+    cur.execute("""
+        SELECT q.title, a.score, a.attempted_at
+        FROM attempts a
+        JOIN quizzes q ON a.quiz_id = q.id
+        WHERE a.user_id = %s
+        ORDER BY a.attempted_at DESC
+    """, (user_id,))
+    history = cur.fetchall()
+    cur.close()
+
+    return render_template('quiz_history.html', history=history)
