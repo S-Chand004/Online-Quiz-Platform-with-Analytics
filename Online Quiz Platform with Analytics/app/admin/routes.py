@@ -71,3 +71,19 @@ def add_option(question_id):
         return redirect(url_for('admin.add_option', question_id=question_id))
 
     return render_template('add_option.html', question_id=question_id)
+
+@admin_bp.route('/analytics')
+def quiz_analytics():
+    admin_required()
+
+    cur = mysql.connection.cursor()
+    cur.execute("""
+        SELECT q.title, COUNT(a.id) AS attempts, AVG(a.score) AS avg_score
+        FROM quizzes q
+        LEFT JOIN attempts a ON q.id = a.quiz_id
+        GROUP BY q.id
+    """)
+    data = cur.fetchall()
+    cur.close()
+
+    return render_template('admin_analytics.html', data=data)
