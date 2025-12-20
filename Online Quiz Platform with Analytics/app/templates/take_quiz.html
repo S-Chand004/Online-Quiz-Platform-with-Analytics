@@ -1,0 +1,12 @@
+<form method="post">
+  {% for q, options in quiz_data %}
+    <p><b>{{ q[1] }}</b></p>
+    {% for opt in options %}
+      <label>
+        <input type="radio" name="question_{{ q[0] }}" value="{{ opt[0] }}" required>
+        {{ opt[1] }}
+      </label><br>
+    {% endfor %}
+  {% endfor %}
+  <button>Submit Quiz</button>
+</form>
