@@ -1,3 +1,33 @@
+Online Quiz Platform with Analytics
+
+A Flask + MySQL–based web application where admins create quizzes and users attempt them with automatic scoring and performance analytics.
+
+Features:
+
+1. User Authentication: Register, login, logout (secure password hashing)
+2. Admin Panel: Create quizzes, add questions, add options, mark correct answers
+3. Quiz Attempt System: Users take quizzes, responses saved, real-time scoring
+
+Analytics:
+
+1. User: Quiz attempt history + score
+2. Admin: Attempts per quiz + average score
+
+Tech Stack:
+
+1. Backend: Python, Flask (Blueprints, App Factory)
+2. Database: MySQL (Flask-MySQLdb)
+3. Frontend: HTML, CSS, Jinja Templates
+
+Database Tables:
+
+1. users
+2. quizzes
+3. questions
+4. options
+5. attempts
+6. responses
+
 MySQL Queries
 
 Create Database:
